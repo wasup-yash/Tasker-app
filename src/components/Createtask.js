@@ -9,9 +9,13 @@ export default function Createtask({modal , toggle , setmodal , taskList , setTa
     const saveTask = (taskObj) => {
       let templist = taskList
       templist.push(taskObj)
+      localStorage.setItem("taskList" , JSON.stringify(templist))
       setTaskList(templist)
       setmodal(false);
     }
+
+
+    
     const handleChange =(e)=>{
     const name = e.target.name
     const value = e.target.value

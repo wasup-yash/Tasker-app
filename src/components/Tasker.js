@@ -1,5 +1,5 @@
-import React , {useState} from 'react';
-
+import React , {useEffect ,useState} from 'react';
+import Card from './Card';
 import Createtask from './Createtask';
 
 export default function Tasker() {
@@ -8,7 +8,16 @@ export default function Tasker() {
   const toggle =()=>{
     setmodal(!modal); 
   } 
-  console.log(taskList)
+
+  useEffect(() => {
+  let arr = localStorage.getItem("taskList")
+  if(arr){
+    let obj = JSON.parse(arr)
+    setTaskList(obj)
+  }
+  },[])
+  
+
   return (
     <>
     <div className='header text-center'>
@@ -16,7 +25,7 @@ export default function Tasker() {
    <button className='btn btn-primary mt-2' onClick={()=>setmodal(true)}>Create Task</button>
     </div>
     <div className="task-container">
-       {taskList.map((obj)=> <li>{obj.Name}</li>)}
+       {taskList.map((obj)=> <Card/>)}
     </div>
     <Createtask toggle={toggle} modal={modal} setmodal={setmodal} setTaskList={setTaskList} taskList={taskList}/>
     
