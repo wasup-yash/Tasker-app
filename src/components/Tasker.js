@@ -8,6 +8,13 @@ export default function Tasker() {
   const toggle =()=>{
     setmodal(!modal); 
   } 
+  const deleteTask= (index)=>{
+    let tempList = taskList
+    tempList.slice(index ,1)
+    localStorage.getItem("taskLlist",JSON.stringify(tempList))
+    setTaskList(tempList)
+    window.location.reload()
+   }
 
   useEffect(() => {
   let arr = localStorage.getItem("taskList")

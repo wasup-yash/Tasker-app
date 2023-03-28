@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 
+import Edittask from './Edittask'
 
-
-export default function Card({taskObj , index , taskList , setTaskList , setModal , modal , toggle}) {
+export default function Card({taskObj , index , taskList , setTaskList , setModal , modal , toggle , deleteTask}) {
+    
     const colors = [
         {
             primaryColor : "#5D93E1",
@@ -25,13 +26,9 @@ export default function Card({taskObj , index , taskList , setTaskList , setModa
             secondaryColor : "#F3F0FD"
         }
     ]
-    const deleteTask= (index)=>{
-        let tempList = taskList
-        tempList.slice(index ,1)
-        localStorage.getItem("taskLlist",JSON.stringify(tempList))
-        setTaskList(tempList)
-        window.location.reload()
-       }
+    const updateTask=()=>{
+        updateListArray(obj, index)
+    }
        const handleDelete=()=>{
         deleteTask(index)
     }
@@ -47,7 +44,7 @@ export default function Card({taskObj , index , taskList , setTaskList , setModa
             <i class="fas fa-trash-alt" style = {{"color" : colors[index%5].primaryColor, "cursor" : "pointer"}} onClick = {handleDelete}></i>
         </div>
 </div>
-<EditTask modal = {modal} toggle = {toggle} updateTask = {updateTask} taskObj = {taskObj}/>
+<Edittask modal = {modal} toggle = {toggle} updateTask = {updateTask} taskObj = {taskObj} />
 </div>
   )
 }
