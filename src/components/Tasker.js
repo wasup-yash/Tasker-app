@@ -25,7 +25,7 @@ export default function Tasker() {
    <button className='btn btn-primary mt-2' onClick={()=>setmodal(true)}>Create Task</button>
     </div>
     <div className="task-container">
-       {taskList.map((obj)=> <Card/>)}
+       {taskList.map((obj , index)=> <Card taskObj = {obj} index = {index} deleteTask={deleteTask}/>)}
     </div>
     <Createtask toggle={toggle} modal={modal} setmodal={setmodal} setTaskList={setTaskList} taskList={taskList}/>
     
