@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "reactstrap";
 import Card from "./Card";
 import Createtask from "./modal/Createtask";
 
@@ -8,20 +9,25 @@ export default function Tasker() {
   const toggle = () => {
     setmodal(!modal);
   };
+
+  const saveTask = (taskObj) => {
+    taskList.push(taskObj);
+    setTaskList(taskList);
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+    setmodal(false);
+  };
+
   const deleteTask = (index) => {
-    let tempList = taskList;
-    tempList.slice(index, 1);
-    localStorage.setItem("taskList", JSON.stringify(tempList));
-    setTaskList(tempList);
-    console.log(index , taskList)
-    // window.location.reload();
+    taskList.splice(index, 1);
+    setTaskList(taskList);
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+    window.location.reload();
   };
 
   const updateListArray = (obj, index) => {
-    let tempList = taskList;
-    tempList[index] = obj;
-    localStorage.setItem("taskList", JSON.stringify(tempList));
-    setTaskList(tempList);
+    taskList[index] = obj;
+    setTaskList(taskList);
+    localStorage.setItem("taskList", JSON.stringify(taskList));
     window.location.reload();
   };
 
@@ -37,9 +43,9 @@ export default function Tasker() {
     <>
       <div className="header text-center">
         <h3>Tasker</h3>
-        <button className="btn btn-primary mt-2" onClick={() => setmodal(true)}>
-          Create Task
-        </button>
+        <Button color="primary" onClick={() => setmodal(true)}>
+          Click Me
+        </Button>
       </div>
       <div className="task-container">
         {taskList.map((obj, index) => (
@@ -48,20 +54,11 @@ export default function Tasker() {
             index={index}
             deleteTask={deleteTask}
             updateListArray={updateListArray}
-            setmodal = {setmodal}
-            modal = {modal}
-            toggle = {toggle}
             key={index}
           />
         ))}
       </div>
-      <Createtask
-        toggle={toggle}
-        modal={modal}
-        setmodal={setmodal}
-        setTaskList={setTaskList}
-        taskList={taskList}
-      />
+      <Createtask toggle={toggle} modal={modal} saveTask={saveTask} />
     </>
   );
 }

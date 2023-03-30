@@ -1,16 +1,17 @@
-import React from "react";
+import React,{useState} from "react";
 
 import Edittask from "./modal/Edittask";
 
 export default function Card({
   taskObj,
   index,
-  setmodal,
-  modal,
-  toggle,
   deleteTask,
   updateListArray,
 }) {
+  const [modal, setmodal] = useState(false);
+  const toggle = () => {
+    setmodal(!modal);
+  };
   const colors = [
     {
       primaryColor: "#5D93E1",

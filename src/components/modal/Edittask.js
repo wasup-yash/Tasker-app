@@ -4,9 +4,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 export default function Edittask({
   modal,
   toggle,
-  setmodal,
-  taskList,
-  setTaskList,
   updateTask,
   taskObj,
 }) {

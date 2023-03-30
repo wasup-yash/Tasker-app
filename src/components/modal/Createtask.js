@@ -1,23 +1,10 @@
-import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import React,{useState} from "react";
+import { Button, Modal, ModalBody, ModalHeader , ModalFooter} from "reactstrap";
 
-export default function Createtask({
-  modal,
-  toggle,
-  setmodal,
-  taskList,
-  setTaskList,
-}) {
+
+export default function Createtask({ modal, toggle, saveTask }) {
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
-
-  const saveTask = (taskObj) => {
-    let templist = taskList;
-    templist.push(taskObj);
-    localStorage.setItem("taskList", JSON.stringify(templist));
-    setTaskList(templist);
-    setmodal(false);
-  };
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -33,7 +20,7 @@ export default function Createtask({
     let taskObj = {};
     taskObj["Name"] = taskName;
     taskObj["Description"] = description;
-    saveTask(taskObj);
+    saveTask({ Name: taskName, Description: description });
     setTaskName(" ");
     setDescription(" ");
   };
