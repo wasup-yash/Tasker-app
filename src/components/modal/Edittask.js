@@ -13,13 +13,7 @@ export default function Edittask({
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
 
-  const saveTask = (taskObj) => {
-    let templist = taskList;
-    templist.push(taskObj);
-    localStorage.setItem("taskList", JSON.stringify(templist));
-    setTaskList(templist);
-    setmodal(false);
-  };
+
 
   const handleChange = (e) => {
     const name = e.target.name;

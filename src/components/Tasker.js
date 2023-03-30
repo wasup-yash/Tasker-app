@@ -11,15 +11,16 @@ export default function Tasker() {
   const deleteTask = (index) => {
     let tempList = taskList;
     tempList.slice(index, 1);
-    localStorage.getItem("taskLlist", JSON.stringify(tempList));
+    localStorage.setItem("taskList", JSON.stringify(tempList));
     setTaskList(tempList);
-    window.location.reload();
+    console.log(index , taskList)
+    // window.location.reload();
   };
 
   const updateListArray = (obj, index) => {
     let tempList = taskList;
     tempList[index] = obj;
-    localStorage.getItem("taskList", JSON.stringify(tempList));
+    localStorage.setItem("taskList", JSON.stringify(tempList));
     setTaskList(tempList);
     window.location.reload();
   };

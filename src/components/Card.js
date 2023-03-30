@@ -5,8 +5,6 @@ import Edittask from "./modal/Edittask";
 export default function Card({
   taskObj,
   index,
-  taskList,
-  setTaskList,
   setmodal,
   modal,
   toggle,
